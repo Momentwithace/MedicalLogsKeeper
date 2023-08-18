@@ -36,9 +36,6 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         return new AddRecordResponse("record added successfully",  getPatientMedicalRecord(patient.getId()));
     }
 
-
-
-
     @Override
     public List<MedicalRecord> getPatientMedicalRecord(Long patientID) {
         return medicalRecordRepository.findAll().stream()
