@@ -11,7 +11,6 @@ import org.ace.medfilesystem.data.repository.MedicalRecordRepository;
 import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 import org.ace.medfilesystem.service.patients.PatientService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
