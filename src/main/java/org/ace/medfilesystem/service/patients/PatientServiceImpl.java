@@ -2,7 +2,8 @@ package org.ace.medfilesystem.service.patients;
 
 import lombok.AllArgsConstructor;
 import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
-import org.ace.medfilesystem.data.dtos.response.DeletePatient;
+import org.ace.medfilesystem.data.dtos.request.UpdatePatientRequest;
+import org.ace.medfilesystem.data.dtos.response.DeletePatientResponse;
 import org.ace.medfilesystem.data.dtos.response.RegisterPatientResponse;
 import org.ace.medfilesystem.data.dtos.response.UpdatePatientDetailsResponse;
 import org.ace.medfilesystem.data.dtos.response.ViewPatientDetailsRespond;
@@ -11,9 +12,10 @@ import org.ace.medfilesystem.data.repository.PatientRepository;
 import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 import org.ace.medfilesystem.message.error.ErrorMessage;
 import org.ace.medfilesystem.message.success.SuccessMessage;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 
 @Service
@@ -21,7 +23,6 @@ import org.modelmapper.ModelMapper;
 public class PatientServiceImpl implements PatientService{
     private final PatientRepository patientRepository;
     private final ModelMapper mapper = new ModelMapper();
-    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -31,32 +32,56 @@ public class PatientServiceImpl implements PatientService{
         }
 
         Patient patient = mapper.map(request, Patient.class);
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-        patient.setPassword(encodedPassword);
-
+        patient.setDateCreated(LocalDateTime.now());
         patientRepository.save(patient);
+
         return new RegisterPatientResponse(SuccessMessage.REGISTRATION_SUCCESSFULLY, patient.getId());
     }
 
     @Override
-    public Patient findPatientByID(Long patientId) throws PatientNotFoundException {
+    public Patient findPatientByID(String patientId) throws PatientNotFoundException {
         return patientRepository.findById(patientId).orElseThrow(
-                () -> new PatientNotFoundException("patient with id "+patientId+" not found")
+            () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
         );
     }
 
     @Override
-    public UpdatePatientDetailsResponse updatePatientDetails(Long patientId) {
-        return null;
+    public Patient findByEmail(String email) throws PatientNotFoundException {
+        if (!patientRepository.existsByEmail(email)){
+            throw new PatientNotFoundException(ErrorMessage.USER_WITH_EMAIL_NOT_FOUND);
+        }
+        return patientRepository.findByEmail(email);
     }
 
     @Override
-    public ViewPatientDetailsRespond viewPatientDetails(Long patientId) {
-        return null;
+    public UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest, String patientId) throws PatientNotFoundException {
+        Patient patient = patientRepository.findById(patientId).orElseThrow(()
+                -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
+        mapper.map(updatePatientRequest, patient);
+        patient.setDateUpdated(LocalDateTime.now());
+        Patient patient1 = patientRepository.save(patient);
+        UpdatePatientDetailsResponse updatePatientDetailsResponse = new UpdatePatientDetailsResponse();
+        updatePatientDetailsResponse.setPatientId(patient1.getId());
+        updatePatientDetailsResponse.setMessage(SuccessMessage.UPDATED_MADE_SUCCESSFULLY);
+        return updatePatientDetailsResponse;
     }
 
     @Override
-    public DeletePatient deletePatient(Long patienceId) {
-        return null;
+    public ViewPatientDetailsRespond viewPatientDetails(String patientId) throws PatientNotFoundException {
+        Patient patient = patientRepository.findById(patientId).orElseThrow(
+                () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
+        return mapper.map(patient, ViewPatientDetailsRespond.class);
+    }
+
+    @Override
+    public DeletePatientResponse deletePatient(String patienceId) throws PatientNotFoundException {
+        Patient patient = patientRepository.findById(patienceId).orElseThrow(
+                () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
+        );
+        DeletePatientResponse deletePatientResponse = new DeletePatientResponse();
+        deletePatientResponse.setMessage(SuccessMessage.DELETED);
+        deletePatientResponse.setDateDelete(LocalDateTime.now());
+        deletePatientResponse.setCourseId(patient.getId());
+        return deletePatientResponse;
     }
 }

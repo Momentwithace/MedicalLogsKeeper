@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterPatientResponse {
     private String message;
-    private Long patientId;
+    private String patientId;
 
 }
