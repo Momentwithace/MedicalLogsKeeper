@@ -1,22 +1,16 @@
 package org.ace.medfilesystem.data.dtos.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RegisterPatientResponse {
     private String message;
     private Long patientId;
-    public RegisterPatientResponse(String message, Long id) {
-        this.message = message;
-        this.patientId = id;
-    }
 
-    public Long getPatientId() {
-        return patientId;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
