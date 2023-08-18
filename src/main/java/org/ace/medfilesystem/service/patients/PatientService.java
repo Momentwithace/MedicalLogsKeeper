@@ -1,9 +1,12 @@
 package org.ace.medfilesystem.service.patients;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.RegisterPatientRequest;
-import com.med.healthrecords.data.dataTransferObjects.responses.RegisterPatientResponse;
-import com.med.healthrecords.data.models.Patient;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
+import org.ace.medfilesystem.data.dtos.response.DeletePatient;
+import org.ace.medfilesystem.data.dtos.response.RegisterPatientResponse;
+import org.ace.medfilesystem.data.dtos.response.UpdatePatientDetailsResponse;
+import org.ace.medfilesystem.data.dtos.response.ViewPatientDetailsRespond;
+import org.ace.medfilesystem.data.models.Patient;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 
 public interface PatientService {
     RegisterPatientResponse registerPatient(RegisterPatientRequest request);

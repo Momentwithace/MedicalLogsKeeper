@@ -1,7 +1,8 @@
 package org.ace.medfilesystem.controller;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.RegisterPatientRequest;
-import com.med.healthrecords.services.patients.PatientService;
+
+import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
+import org.ace.medfilesystem.service.patients.PatientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,9 +1,12 @@
 package org.ace.medfilesystem.service.medicalRecords;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.AddRecordRequest;
-import com.med.healthrecords.data.dataTransferObjects.responses.AddRecordResponse;
-import com.med.healthrecords.data.models.MedicalRecord;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.data.dtos.request.AddRecordRequest;
+import org.ace.medfilesystem.data.dtos.response.AddRecordResponse;
+import org.ace.medfilesystem.data.dtos.response.ArchiveRecordResponse;
+import org.ace.medfilesystem.data.dtos.response.DeleteRecordResponse;
+import org.ace.medfilesystem.data.dtos.response.UnarchiveRecordResponse;
+import org.ace.medfilesystem.data.models.MedicalRecord;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 
 import java.util.List;
 

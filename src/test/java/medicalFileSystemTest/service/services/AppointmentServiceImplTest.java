@@ -1,11 +1,11 @@
 package medicalFileSystemTest.service.services;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.BookAppointmentRequest;
-import com.med.healthrecords.data.dataTransferObjects.requests.RegisterPatientRequest;
-import com.med.healthrecords.data.dataTransferObjects.responses.BookAppointmentResponse;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
-import com.med.healthrecords.services.appointment.AppointmentService;
-import com.med.healthrecords.services.patients.PatientService;
+import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
+import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
+import org.ace.medfilesystem.data.dtos.response.BookAppointmentResponse;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.service.appointment.AppointmentService;
+import org.ace.medfilesystem.service.patients.PatientService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

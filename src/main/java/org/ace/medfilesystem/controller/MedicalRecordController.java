@@ -1,8 +1,9 @@
 package org.ace.medfilesystem.controller;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.AddRecordRequest;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
-import com.med.healthrecords.services.medicalRecords.MedicalRecordService;
+
+import org.ace.medfilesystem.data.dtos.request.AddRecordRequest;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.service.medicalRecords.MedicalRecordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

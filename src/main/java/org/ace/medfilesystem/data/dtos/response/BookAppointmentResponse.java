@@ -1,27 +1,35 @@
 package org.ace.medfilesystem.data.dtos.response;
 
-import com.med.healthrecords.data.models.Appointment;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.ace.medfilesystem.data.models.Appointment;
 
 import java.util.List;
-
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookAppointmentResponse {
     private String message;
   private  List<Appointment> appointments;
 
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public BookAppointmentResponse(String message, List<Appointment> appointments) {
-        this.message = message;
-        this.appointments = appointments;
-    }
+//    public List<Appointment> getAppointments() {
+//        return appointments;
+//    }
+//
+//    public void setAppointments(List<Appointment> appointments) {
+//        this.appointments = appointments;
+//    }
+//
+//    public String getMessage() {
+//        return message;
+//    }
+//
+//    public BookAppointmentResponse(String message, List<Appointment> appointments) {
+//        this.message = message;
+//        this.appointments = appointments;
+//    }
 }

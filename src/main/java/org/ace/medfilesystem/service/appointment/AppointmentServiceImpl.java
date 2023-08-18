@@ -1,12 +1,14 @@
 package org.ace.medfilesystem.service.appointment;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.BookAppointmentRequest;
-import com.med.healthrecords.data.dataTransferObjects.responses.BookAppointmentResponse;
-import com.med.healthrecords.data.models.Appointment;
-import com.med.healthrecords.data.models.Patient;
-import com.med.healthrecords.data.repository.AppointmentRepository;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
-import com.med.healthrecords.services.patients.PatientService;
+
+import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
+import org.ace.medfilesystem.data.dtos.request.RescheduleAppointmentReuest;
+import org.ace.medfilesystem.data.dtos.response.*;
+import org.ace.medfilesystem.data.models.Appointment;
+import org.ace.medfilesystem.data.models.Patient;
+import org.ace.medfilesystem.data.repository.AppointmentRepository;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.service.patients.PatientService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -40,5 +42,25 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentRepository.findAll().stream()
                 .filter(appointment -> appointment.getPatient().getId().equals(patientID))
                 .toList();
+    }
+
+    @Override
+    public AppointmentDetailsResponse viewAppointmentDetails(Long patientId) {
+        return null;
+    }
+
+    @Override
+    public RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentReuest rescheduleAppointmentReuest) {
+        return null;
+    }
+
+    @Override
+    public CancelAppointementResponse cancelAppointment(Long id) {
+        return null;
+    }
+
+    @Override
+    public DeleteAppointmentResponse deleteAppointment(Long id) {
+        return null;
     }
 }

@@ -1,8 +1,8 @@
 package org.ace.medfilesystem.controller;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.BookAppointmentRequest;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
-import com.med.healthrecords.services.appointment.AppointmentService;
+import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.service.appointment.AppointmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

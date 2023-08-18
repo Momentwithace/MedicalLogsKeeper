@@ -1,10 +1,13 @@
 package org.ace.medfilesystem.service.patients;
 
-import com.med.healthrecords.data.dataTransferObjects.requests.RegisterPatientRequest;
-import com.med.healthrecords.data.dataTransferObjects.responses.RegisterPatientResponse;
-import com.med.healthrecords.data.models.Patient;
-import com.med.healthrecords.data.repository.PatientRepository;
-import com.med.healthrecords.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
+import org.ace.medfilesystem.data.dtos.response.DeletePatient;
+import org.ace.medfilesystem.data.dtos.response.RegisterPatientResponse;
+import org.ace.medfilesystem.data.dtos.response.UpdatePatientDetailsResponse;
+import org.ace.medfilesystem.data.dtos.response.ViewPatientDetailsRespond;
+import org.ace.medfilesystem.data.models.Patient;
+import org.ace.medfilesystem.data.repository.PatientRepository;
+import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,5 +36,20 @@ public class PatientServiceImpl implements PatientService{
         return patientRepository.findById(patientId).orElseThrow(
                 () -> new PatientNotFoundException("patient with id "+patientId+" not found")
         );
+    }
+
+    @Override
+    public UpdatePatientDetailsResponse updatePatientDetails(Long patientId) {
+        return null;
+    }
+
+    @Override
+    public ViewPatientDetailsRespond viewPatientDetails(Long patientId) {
+        return null;
+    }
+
+    @Override
+    public DeletePatient deletePatient(Long patienceId) {
+        return null;
     }
 }

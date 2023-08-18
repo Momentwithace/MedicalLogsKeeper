@@ -2,7 +2,8 @@ package org.ace.medfilesystem.service.appointment;
 
 
 import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
-import org.ace.medfilesystem.data.dtos.response.BookAppointmentResponse;
+import org.ace.medfilesystem.data.dtos.request.RescheduleAppointmentReuest;
+import org.ace.medfilesystem.data.dtos.response.*;
 import org.ace.medfilesystem.data.models.Appointment;
 import org.ace.medfilesystem.exceptions.PatientNotFoundException;
 
