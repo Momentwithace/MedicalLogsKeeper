@@ -25,8 +25,8 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public AddRecordResponse addRecord(AddRecordRequest request) throws PatientNotFoundException {
-        MedicalRecord medicalRecord = new MedicalRecord();
         Patient patient = patientService.findPatientByID(request.getPatientId());
+        MedicalRecord medicalRecord = new MedicalRecord();
         medicalRecord.setRecordHolder(patient);
         medicalRecord.setTemperature(request.getTemperature());
         medicalRecord.setTemperatureUnit(request.getTemperatureUnit());
