@@ -10,10 +10,10 @@ import java.util.List;
 public interface MedicalRecordService {
     AddRecordResponse addRecord(AddRecordRequest request) throws MedicalFileSystemException;
     List<MedicalRecord> getPatientMedicalRecord(String patientID);
-    RemoveRecordResponse removeRecord(String id);
+    RemoveRecordResponse removeRecord(String id) throws MedicalFileSystemException;
     DeleteRecordResponse deleteMedicalRecord(String id) throws MedicalFileSystemException;
     ArchiveRecordResponse archiveRecord(String id) throws MedicalFileSystemException;
-    UnarchiveRecordResponse unarchiveRecord(String id);
+    UnarchiveRecordResponse unarchiveRecord(String id) throws MedicalFileSystemException;
 
 
 }

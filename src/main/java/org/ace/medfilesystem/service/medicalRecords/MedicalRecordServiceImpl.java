@@ -1,10 +1,7 @@
 package org.ace.medfilesystem.service.medicalRecords;
 
 import org.ace.medfilesystem.data.dtos.request.AddRecordRequest;
-import org.ace.medfilesystem.data.dtos.response.AddRecordResponse;
-import org.ace.medfilesystem.data.dtos.response.ArchiveRecordResponse;
-import org.ace.medfilesystem.data.dtos.response.DeleteRecordResponse;
-import org.ace.medfilesystem.data.dtos.response.UnarchiveRecordResponse;
+import org.ace.medfilesystem.data.dtos.response.*;
 import org.ace.medfilesystem.data.models.MedicalRecord;
 import org.ace.medfilesystem.data.models.Patient;
 import org.ace.medfilesystem.data.repository.MedicalRecordRepository;
@@ -46,15 +43,26 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
                 .toList();
     }
 
+
+    @Override
+    public RemoveRecordResponse removeRecord(String id) throws MedicalFileSystemException {
+        MedicalRecord medicalRecord = medicalRecordRepository.findById(id).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.RECORD_NOT_FOUND));
+        medicalRecordRepository.delete(medicalRecord);
+        return RemoveRecordResponse.builder()
+                .message(SuccessMessage.RECORD_REMOVED_SUCCESSFULLY)
+                .id(medicalRecord.getId())
+                .build();
+    }
+
     @Override
     public DeleteRecordResponse deleteMedicalRecord(String id) throws MedicalFileSystemException {
         MedicalRecord medicalRecord = medicalRecordRepository.findById(id).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.RECORD_NOT_FOUND));
         medicalRecordRepository.delete(medicalRecord);
-        DeleteRecordResponse deleteRecordResponse = new DeleteRecordResponse();
-        deleteRecordResponse.setMessage(SuccessMessage.DELETED);
-        deleteRecordResponse.setDateDeleted(LocalDateTime.now());
-        deleteRecordResponse.setId(medicalRecord.getId());
-        return deleteRecordResponse;
+        return DeleteRecordResponse.builder()
+                .message(SuccessMessage.DELETED)
+                .id(medicalRecord.getId())
+                .dateDeleted(LocalDateTime.now())
+                .build();
     }
 
     @Override
@@ -67,14 +75,26 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         medicalRecord.setDatedCreated(LocalDateTime.now());
         medicalRecord.setDateUpdated(LocalDateTime.now());
         medicalRecordRepository.save(medicalRecord);
-        ArchiveRecordResponse archiveRecordResponse = new ArchiveRecordResponse();
-        archiveRecordResponse.setMessage(SuccessMessage.ARCHIVED_SUCCESSFULLY);
-        archiveRecordResponse.setId(medicalRecord.getId());
-        return archiveRecordResponse;
+        return ArchiveRecordResponse.builder()
+                .message(SuccessMessage.ARCHIVED_SUCCESSFULLY)
+                .id(medicalRecord.getId())
+                .build();
+
     }
 
     @Override
-    public UnarchiveRecordResponse unarchiveRecord(String id) {
-        return null;
+    public UnarchiveRecordResponse unarchiveRecord(String id) throws MedicalFileSystemException {
+    MedicalRecord medicalRecord = medicalRecordRepository.findById(id).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.RECORD_NOT_FOUND));
+    if (!medicalRecord.getIsArchived()){
+        throw new MedicalFileSystemException(ErrorMessage.RECORD_ALREADY_UNARCHIVED);
+    }
+    medicalRecord.setIsArchived(false);
+    medicalRecord.setDatedCreated(LocalDateTime.now());
+    medicalRecord.setDateUpdated(LocalDateTime.now());
+    medicalRecordRepository.save(medicalRecord);
+    return UnarchiveRecordResponse.builder()
+            .id(medicalRecord.getId())
+            .message(SuccessMessage.UNARCHIVED_SUCCESSFULLY)
+            .build();
     }
 }

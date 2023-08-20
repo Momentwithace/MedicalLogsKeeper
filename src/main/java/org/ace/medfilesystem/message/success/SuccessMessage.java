@@ -10,4 +10,6 @@ public class SuccessMessage {
     public static final String  DELETED = "Deleted Successfully";
     public static final String RECORD_ADDED_SUCCESSFULLY = "record added successfully";
     public static final String ARCHIVED_SUCCESSFULLY = "Archived Successfully";
+    public static final String RECORD_REMOVED_SUCCESSFULLY = "Record remove successfully";
+    public static final String UNARCHIVED_SUCCESSFULLY = "Unarchive Successful";
 }
