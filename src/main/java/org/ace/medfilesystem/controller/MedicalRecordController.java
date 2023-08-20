@@ -2,7 +2,7 @@ package org.ace.medfilesystem.controller;
 
 
 import org.ace.medfilesystem.data.dtos.request.AddRecordRequest;
-import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 import org.ace.medfilesystem.service.medicalRecords.MedicalRecordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +19,7 @@ public class MedicalRecordController {
         this.medicalRecordService = medicalRecordService;
     }
     @PostMapping
-    public ResponseEntity<?> bookAppointment(@RequestBody AddRecordRequest request) throws PatientNotFoundException {
+    public ResponseEntity<?> bookAppointment(@RequestBody AddRecordRequest request) throws MedicalFileSystemException {
         return ResponseEntity.ok(medicalRecordService.addRecord(request));
     }
 }

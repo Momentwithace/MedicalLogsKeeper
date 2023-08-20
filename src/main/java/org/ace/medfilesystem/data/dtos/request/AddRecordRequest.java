@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddRecordRequest {
-    private Long patientId;
+    private String patientId;
     private Double temperature;
     private String diagnosis;
     private String temperatureUnit;

@@ -9,4 +9,6 @@ public class ErrorMessage {
 
     public static final String USER_WITH_ID_NOT_FOUND = "User with id not found";
     public static final String USER_WITH_EMAIL_NOT_FOUND = "Not Found";
+    public static final String  RECORD_NOT_FOUND = "Record not found";
+    public static final String RECORD_ALREADY_ARCHIVED = "Record already achived";
 }

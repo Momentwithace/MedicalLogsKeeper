@@ -7,7 +7,7 @@ import org.ace.medfilesystem.data.dtos.response.*;
 import org.ace.medfilesystem.data.models.Appointment;
 import org.ace.medfilesystem.data.models.Patient;
 import org.ace.medfilesystem.data.repository.AppointmentRepository;
-import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 import org.ace.medfilesystem.service.patients.PatientService;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public BookAppointmentResponse bookAppointment(BookAppointmentRequest request) throws PatientNotFoundException {
+    public BookAppointmentResponse bookAppointment(BookAppointmentRequest request) throws MedicalFileSystemException {
         Appointment appointment = new Appointment();
         Patient patient = patientService.findPatientByID(request.getPatientId());
         appointment.setPatient(patient);

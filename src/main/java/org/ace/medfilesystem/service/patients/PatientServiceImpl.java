@@ -9,7 +9,7 @@ import org.ace.medfilesystem.data.dtos.response.UpdatePatientDetailsResponse;
 import org.ace.medfilesystem.data.dtos.response.ViewPatientDetailsRespond;
 import org.ace.medfilesystem.data.models.Patient;
 import org.ace.medfilesystem.data.repository.PatientRepository;
-import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 import org.ace.medfilesystem.message.error.ErrorMessage;
 import org.ace.medfilesystem.message.success.SuccessMessage;
 import org.modelmapper.ModelMapper;
@@ -39,24 +39,24 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public Patient findPatientByID(String patientId) throws PatientNotFoundException {
+    public Patient findPatientByID(String patientId) throws MedicalFileSystemException {
         return patientRepository.findById(patientId).orElseThrow(
-            () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
+            () -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
         );
     }
 
     @Override
-    public Patient findByEmail(String email) throws PatientNotFoundException {
+    public Patient findByEmail(String email) throws MedicalFileSystemException {
         if (!patientRepository.existsByEmail(email)){
-            throw new PatientNotFoundException(ErrorMessage.USER_WITH_EMAIL_NOT_FOUND);
+            throw new MedicalFileSystemException(ErrorMessage.USER_WITH_EMAIL_NOT_FOUND);
         }
         return patientRepository.findByEmail(email);
     }
 
     @Override
-    public UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest, String patientId) throws PatientNotFoundException {
+    public UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest, String patientId) throws MedicalFileSystemException {
         Patient patient = patientRepository.findById(patientId).orElseThrow(()
-                -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
+                -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
         mapper.map(updatePatientRequest, patient);
         patient.setDateUpdated(LocalDateTime.now());
         Patient patient1 = patientRepository.save(patient);
@@ -67,17 +67,18 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public ViewPatientDetailsRespond viewPatientDetails(String patientId) throws PatientNotFoundException {
+    public ViewPatientDetailsRespond viewPatientDetails(String patientId) throws MedicalFileSystemException {
         Patient patient = patientRepository.findById(patientId).orElseThrow(
-                () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
+                () -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
         return mapper.map(patient, ViewPatientDetailsRespond.class);
     }
 
     @Override
-    public DeletePatientResponse deletePatient(String patienceId) throws PatientNotFoundException {
+    public DeletePatientResponse deletePatient(String patienceId) throws MedicalFileSystemException {
         Patient patient = patientRepository.findById(patienceId).orElseThrow(
-                () -> new PatientNotFoundException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
+                () -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
         );
+        patientRepository.delete(patient);
         DeletePatientResponse deletePatientResponse = new DeletePatientResponse();
         deletePatientResponse.setMessage(SuccessMessage.DELETED);
         deletePatientResponse.setDateDelete(LocalDateTime.now());

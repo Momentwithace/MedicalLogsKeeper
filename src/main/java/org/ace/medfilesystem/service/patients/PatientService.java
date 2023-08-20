@@ -7,13 +7,13 @@ import org.ace.medfilesystem.data.dtos.response.RegisterPatientResponse;
 import org.ace.medfilesystem.data.dtos.response.UpdatePatientDetailsResponse;
 import org.ace.medfilesystem.data.dtos.response.ViewPatientDetailsRespond;
 import org.ace.medfilesystem.data.models.Patient;
-import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 
 public interface PatientService {
     RegisterPatientResponse registerPatient(RegisterPatientRequest request);
-    Patient findPatientByID(String patientId) throws PatientNotFoundException;
-    Patient findByEmail(String email) throws PatientNotFoundException;
-    UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest,  String patientId) throws PatientNotFoundException;
-    ViewPatientDetailsRespond viewPatientDetails(String patientId) throws PatientNotFoundException;
-    DeletePatientResponse deletePatient(String patienceId) throws PatientNotFoundException;
+    Patient findPatientByID(String patientId) throws MedicalFileSystemException;
+    Patient findByEmail(String email) throws MedicalFileSystemException;
+    UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest,  String patientId) throws MedicalFileSystemException;
+    ViewPatientDetailsRespond viewPatientDetails(String patientId) throws MedicalFileSystemException;
+    DeletePatientResponse deletePatient(String patienceId) throws MedicalFileSystemException;
 }

@@ -3,7 +3,7 @@ package medicalFileSystemTest.service.services;
 import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
 import org.ace.medfilesystem.data.dtos.request.RegisterPatientRequest;
 import org.ace.medfilesystem.data.dtos.response.BookAppointmentResponse;
-import org.ace.medfilesystem.exceptions.PatientNotFoundException;
+import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 import org.ace.medfilesystem.service.appointment.AppointmentService;
 import org.ace.medfilesystem.service.patients.PatientService;
 import org.junit.jupiter.api.AfterEach;
@@ -23,7 +23,7 @@ class AppointmentServiceImplTest {
     BookAppointmentResponse response;
 
     @BeforeEach
-    void setUp() throws PatientNotFoundException {
+    void setUp() throws MedicalFileSystemException {
         patientService.registerPatient(
                 new RegisterPatientRequest("John", "Doe",
                         "09-10-1996", "test@gmail.com",
