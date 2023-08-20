@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RescheduleAppointResponse {
+public class CancelAppointmentResponse {
     private String message;
-    private String patientId;
+    private String id;
 }

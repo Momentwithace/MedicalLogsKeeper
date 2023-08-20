@@ -2,18 +2,15 @@ package org.ace.medfilesystem.service.appointment;
 
 
 import org.ace.medfilesystem.data.dtos.request.BookAppointmentRequest;
-import org.ace.medfilesystem.data.dtos.request.RescheduleAppointmentReuest;
+import org.ace.medfilesystem.data.dtos.request.RescheduleAppointmentRequest;
 import org.ace.medfilesystem.data.dtos.response.*;
-import org.ace.medfilesystem.data.models.Appointment;
 import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
-
-import java.util.List;
 
 public interface AppointmentService {
     BookAppointmentResponse bookAppointment(BookAppointmentRequest request) throws MedicalFileSystemException;
-    List<Appointment> getPatientAppointments(Long patientID);
-    AppointmentDetailsResponse viewAppointmentDetails(Long patientId);
-    RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentReuest rescheduleAppointmentReuest);
-    CancelAppointementResponse cancelAppointment(Long id);
-    DeleteAppointmentResponse deleteAppointment(Long id);
+    AppointmentDetailsResponse viewAppointmentDetails(String patientId) throws MedicalFileSystemException;
+    RemoveAppointmentResponse removeAppointment(String patientId) throws MedicalFileSystemException;
+    RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentRequest rescheduleAppointmentRequest) throws MedicalFileSystemException;
+    CancelAppointmentResponse cancelAppointment(String patientId) throws MedicalFileSystemException;
+    DeleteAppointmentResponse deleteAppointment(String patientId) throws MedicalFileSystemException;
 }

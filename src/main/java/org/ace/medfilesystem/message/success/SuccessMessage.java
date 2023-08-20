@@ -12,4 +12,9 @@ public class SuccessMessage {
     public static final String ARCHIVED_SUCCESSFULLY = "Archived Successfully";
     public static final String RECORD_REMOVED_SUCCESSFULLY = "Record remove successfully";
     public static final String UNARCHIVED_SUCCESSFULLY = "Unarchive Successful";
+    public static final String APPOINTMENT_SUCCESSFULLY_BOOK = "Appointment booked successfully";
+    public static final String APPOINTMENT_SUCCESSFULLY_REMOVED ="Appointment removed successfully";
+    public static final String APPOINTMENT_SUCCESSFULLY_RESCHEDULED = "Appointment rescheduled";
+    public static final String APPOINTMENT_SUCCESSFULLY_CANCELLED = "Appointment successfully cancelled";
+    public static final String APPOINTMENT_SUCCESSFULLY_DELETED =  "Appointment successfully deleted";
 }

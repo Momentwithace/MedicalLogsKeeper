@@ -1,4 +1,4 @@
-package org.ace.medfilesystem.data.dtos.response;
+package org.ace.medfilesystem.data.dtos.request;
 
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDetailsResponse {
-    private String id;
+@AllArgsConstructor
+public class RescheduleAppointmentRequest {
+    private String patientId;
     private String date;
     private Patient patient;
     private LocalDateTime dateCreated;

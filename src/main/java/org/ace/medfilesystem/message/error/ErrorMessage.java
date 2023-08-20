@@ -12,4 +12,6 @@ public class ErrorMessage {
     public static final String  RECORD_NOT_FOUND = "Record not found";
     public static final String RECORD_ALREADY_ARCHIVED = "Record already achived";
     public static final String RECORD_ALREADY_UNARCHIVED = "Record already unarchived";
+    public static final String PATIENT_NOT_FOUND = "Patient not found";
+    public static final String APPOINTMENT_NOT_FOUND = "Appointment not found";
 }

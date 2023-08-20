@@ -14,5 +14,5 @@ import java.util.List;
 @AllArgsConstructor
 public class BookAppointmentResponse {
     private String message;
-  private  List<Appointment> appointments;
+    private String id;
 }
