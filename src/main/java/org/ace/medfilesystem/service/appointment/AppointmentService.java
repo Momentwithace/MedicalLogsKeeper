@@ -10,7 +10,7 @@ public interface AppointmentService {
     BookAppointmentResponse bookAppointment(BookAppointmentRequest request) throws MedicalFileSystemException;
     AppointmentDetailsResponse viewAppointmentDetails(String patientId) throws MedicalFileSystemException;
     RemoveAppointmentResponse removeAppointment(String patientId) throws MedicalFileSystemException;
-    RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentRequest rescheduleAppointmentRequest) throws MedicalFileSystemException;
+    RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentRequest rescheduleAppointmentRequest, String appointmentId) throws MedicalFileSystemException;
     CancelAppointmentResponse cancelAppointment(String patientId) throws MedicalFileSystemException;
     DeleteAppointmentResponse deleteAppointment(String patientId) throws MedicalFileSystemException;
 }

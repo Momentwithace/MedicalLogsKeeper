@@ -62,8 +62,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentRequest rescheduleAppointmentRequest) throws MedicalFileSystemException {
-    Appointment appointment = appointmentRepository.findById(rescheduleAppointmentRequest.getPatientId()).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.APPOINTMENT_NOT_FOUND));
+    public RescheduleAppointResponse rescheduleAppointment(RescheduleAppointmentRequest rescheduleAppointmentRequest, String appointmentId) throws MedicalFileSystemException {
+    Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.APPOINTMENT_NOT_FOUND));
     appointment.setId(rescheduleAppointmentRequest.getPatientId());
     appointment.setDate(rescheduleAppointmentRequest.getDate());
     appointment.setPatient(rescheduleAppointmentRequest.getPatient());
