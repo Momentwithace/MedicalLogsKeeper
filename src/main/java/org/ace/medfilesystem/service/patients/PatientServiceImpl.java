@@ -26,9 +26,9 @@ public class PatientServiceImpl implements PatientService{
 
 
     @Override
-    public RegisterPatientResponse registerPatient(RegisterPatientRequest request) {
+    public RegisterPatientResponse registerPatient(RegisterPatientRequest request) throws MedicalFileSystemException {
         if (patientRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException(ErrorMessage.USER_ALREADY_EXIST);
+            throw new MedicalFileSystemException(ErrorMessage.USER_ALREADY_EXIST);
         }
 
         Patient patient = mapper.map(request, Patient.class);
@@ -36,21 +36,6 @@ public class PatientServiceImpl implements PatientService{
         patientRepository.save(patient);
 
         return new RegisterPatientResponse(SuccessMessage.REGISTRATION_SUCCESSFULLY, patient.getId());
-    }
-
-    @Override
-    public Patient findPatientByID(String patientId) throws MedicalFileSystemException {
-        return patientRepository.findById(patientId).orElseThrow(
-            () -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND)
-        );
-    }
-
-    @Override
-    public Patient findByEmail(String email) throws MedicalFileSystemException {
-        if (!patientRepository.existsByEmail(email)){
-            throw new MedicalFileSystemException(ErrorMessage.USER_WITH_EMAIL_NOT_FOUND);
-        }
-        return patientRepository.findByEmail(email);
     }
 
     @Override

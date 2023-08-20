@@ -1,10 +1,12 @@
 package org.ace.medfilesystem.service.medicalRecords;
 
+import lombok.AllArgsConstructor;
 import org.ace.medfilesystem.data.dtos.request.AddRecordRequest;
 import org.ace.medfilesystem.data.dtos.response.*;
 import org.ace.medfilesystem.data.models.MedicalRecord;
 import org.ace.medfilesystem.data.models.Patient;
 import org.ace.medfilesystem.data.repository.MedicalRecordRepository;
+import org.ace.medfilesystem.data.repository.PatientRepository;
 import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 import org.ace.medfilesystem.message.error.ErrorMessage;
 import org.ace.medfilesystem.message.success.SuccessMessage;
@@ -15,18 +17,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MedicalRecordServiceImpl implements MedicalRecordService {
     private final MedicalRecordRepository medicalRecordRepository;
     private final PatientService patientService;
+    private final PatientRepository patientRepository;
 
-    public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository, PatientService patientService) {
-        this.medicalRecordRepository = medicalRecordRepository;
-        this.patientService = patientService;
-    }
 
     @Override
     public AddRecordResponse addRecord(AddRecordRequest request) throws MedicalFileSystemException {
-        Patient patient = patientService.findPatientByID(request.getPatientId());
+        Patient patient = patientRepository.findById(request.getPatientId()).orElseThrow(() -> new MedicalFileSystemException(ErrorMessage.USER_WITH_ID_NOT_FOUND));
         MedicalRecord medicalRecord = new MedicalRecord();
         medicalRecord.setRecordHolder(patient);
         medicalRecord.setTemperature(request.getTemperature());

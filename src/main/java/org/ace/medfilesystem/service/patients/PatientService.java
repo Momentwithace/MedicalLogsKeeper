@@ -10,9 +10,7 @@ import org.ace.medfilesystem.data.models.Patient;
 import org.ace.medfilesystem.exceptions.MedicalFileSystemException;
 
 public interface PatientService {
-    RegisterPatientResponse registerPatient(RegisterPatientRequest request);
-    Patient findPatientByID(String patientId) throws MedicalFileSystemException;
-    Patient findByEmail(String email) throws MedicalFileSystemException;
+    RegisterPatientResponse registerPatient(RegisterPatientRequest request) throws MedicalFileSystemException;
     UpdatePatientDetailsResponse updatePatientDetails(UpdatePatientRequest updatePatientRequest,  String patientId) throws MedicalFileSystemException;
     ViewPatientDetailsRespond viewPatientDetails(String patientId) throws MedicalFileSystemException;
     DeletePatientResponse deletePatient(String patienceId) throws MedicalFileSystemException;
