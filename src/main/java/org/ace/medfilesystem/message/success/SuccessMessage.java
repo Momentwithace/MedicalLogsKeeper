@@ -17,4 +17,5 @@ public class SuccessMessage {
     public static final String APPOINTMENT_SUCCESSFULLY_RESCHEDULED = "Appointment rescheduled";
     public static final String APPOINTMENT_SUCCESSFULLY_CANCELLED = "Appointment successfully cancelled";
     public static final String APPOINTMENT_SUCCESSFULLY_DELETED =  "Appointment successfully deleted";
+    public static final String FOUND = "Found";
 }
